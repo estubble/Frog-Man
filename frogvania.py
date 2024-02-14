@@ -617,7 +617,6 @@ while gameOpen == True:
 			fpExists = fp.update()
 			screen.blit(fp.getFrame(), (fp.getPosX(), fp.getPosY()))
 			fpHitBox = fp.getHitBox()
-			#pygame.draw.rect(screen, (255, 0, 0), p.getHitBox(), 2)  # 2 is the width of the outline
 			#pygame.draw.rect(screen, (255, 0, 0), fp.getHitBox(), 2)  # 2 is the width of the outline
 			if fpHitBox.colliderect(p.getHitBox()):
 				p.takeDamage()
@@ -634,6 +633,7 @@ while gameOpen == True:
 		p.updateAttackFrame()
 		#pygame.draw.rect(screen, (255, 0, 0), p.getAttackHitBox(), 2)  # 2 is the width of the outline
 
+		triggerAttack = False
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				mainGameLoop = False
@@ -642,51 +642,53 @@ while gameOpen == True:
 					p.jump()
 					#print("player x = ", p.getPosX(), "offset = ", xOffset)
 				if event.key == pygame.K_SPACE: 
-					canAttack = p.attack()
-					if canAttack == True:
-						whipTongue.play()
-						for h in hList:
-							if p.getAttackHitBox().colliderect(h.getHitBox()):
-								alive = h.takeDamage()
-								hit.play()
-								if h.getDyingStatus() == True and alive:
-									headOuch.play()
-						for e in eyeList:
-							if p.getAttackHitBox().colliderect(e.getHitBox()):
-								alive = e.takeDamage()
-								hit.play()	
-								if e.getDyingStatus() == True and alive:
-									eyeOuch.play()
-						for f in flowerList:
-							if p.getAttackHitBox().colliderect(f.getHitBox()):
-								alive = f.takeDamage()
-								hit.play()
-								if f.getDyingStatus() == True and alive == True:
-									flowOuch.play()
-						for fos in fosList:
-							if p.getAttackHitBox().colliderect(fos.getHitBox()):
-								alive = fos.takeDamage()
-								hit.play()
-								if fos.getDyingStatus() == True and alive == True:
-									fosOuch.play()
-						for ts in tSnakeList:
-							if p.getAttackHitBox().colliderect(ts.getHitBox()):
-								alive = ts.takeDamage()
-								hit.play()
-								if ts.getDyingStatus() == True and alive == True:
-									tsOuch.play()
-						for mc in mcList:
-							if p.getAttackHitBox().colliderect(mc.getHitBox()):
-								alive = mc.takeDamage()
-								hit.play()
-								if mc.getDyingStatus() == True and alive == True:
-									mcOuch.play()
-						for w in wormList:
-							if p.getAttackHitBox().colliderect(w.getHitBox()):
-								alive = w.takeDamage()
-								hit.play()
-								if w.getDyingStatus() == True and alive == True:
-									wormOuch.play()
+					triggerAttack = p.attack()
+					
+					
+		if triggerAttack == True or p.getAttackStatus() == True:
+			whipTongue.play()
+			for h in hList:
+				if p.getAttackHitBox().colliderect(h.getHitBox()):
+					alive = h.takeDamage()
+					hit.play()
+					if h.getDyingStatus() == True and alive:
+						headOuch.play()
+			for e in eyeList:
+				if p.getAttackHitBox().colliderect(e.getHitBox()):
+					alive = e.takeDamage()
+					hit.play()	
+					if e.getDyingStatus() == True and alive:
+						eyeOuch.play()
+			for f in flowerList:
+				if p.getAttackHitBox().colliderect(f.getHitBox()):
+					alive = f.takeDamage()
+					hit.play()
+					if f.getDyingStatus() == True and alive == True:
+						flowOuch.play()
+			for fos in fosList:
+				if p.getAttackHitBox().colliderect(fos.getHitBox()):
+					alive = fos.takeDamage()
+					hit.play()
+					if fos.getDyingStatus() == True and alive == True:
+						fosOuch.play()
+			for ts in tSnakeList:
+				if p.getAttackHitBox().colliderect(ts.getHitBox()):
+					alive = ts.takeDamage()
+					hit.play()
+					if ts.getDyingStatus() == True and alive == True:
+						tsOuch.play()
+			for mc in mcList:
+				if p.getAttackHitBox().colliderect(mc.getHitBox()):
+					alive = mc.takeDamage()
+					hit.play()
+					if mc.getDyingStatus() == True and alive == True:
+						mcOuch.play()
+			for w in wormList:
+				if p.getAttackHitBox().colliderect(w.getHitBox()):
+					alive = w.takeDamage()
+					hit.play()
+					if w.getDyingStatus() == True and alive == True:
+						wormOuch.play()
 					
 					
 		p.toggleAltFrame()

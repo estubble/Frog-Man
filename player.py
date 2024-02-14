@@ -66,6 +66,9 @@ class player(pygame.sprite.Sprite):
 		self.loadNextLevel = False
 		self.deathTime = 0
 		
+	def getAttackStatus(self):
+		return self.isAttacking
+		
 	def canMoveRight(self, xOffset, floorMaxX, nextFloorY):
 		pActX = self.x + xOffset
 		if self.isFacingRight:
