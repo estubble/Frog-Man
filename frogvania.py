@@ -888,6 +888,7 @@ while gameOpen == True:
 		secs = 0
 		#if(level != 7):
 			#level = 0
+		#else:
 		skip = False
 	while secs < 10 and skip == False and gameOpen == True:
 		for event in pygame.event.get():
