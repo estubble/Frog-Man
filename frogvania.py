@@ -886,8 +886,8 @@ while gameOpen == True:
 		pygame.mixer.music.load("end.wav")#("gameOver.wav")
 		pygame.mixer.music.play(0)
 		secs = 0
-		if(level != 7):
-			level = 0
+		#if(level != 7):
+			#level = 0
 		skip = False
 	while secs < 10 and skip == False and gameOpen == True:
 		for event in pygame.event.get():
