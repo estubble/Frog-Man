@@ -643,50 +643,56 @@ while gameOpen == True:
 					#print("player x = ", p.getPosX(), "offset = ", xOffset)
 				if event.key == pygame.K_SPACE: 
 					triggerAttack = p.attack()
-					
-					
+					whipTongue.play()
+										
 		if triggerAttack == True or p.getAttackStatus() == True:
-			whipTongue.play()
 			for h in hList:
 				if p.getAttackHitBox().colliderect(h.getHitBox()):
 					alive = h.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if h.getDyingStatus() == True and alive:
 						headOuch.play()
 			for e in eyeList:
 				if p.getAttackHitBox().colliderect(e.getHitBox()):
 					alive = e.takeDamage()
-					hit.play()	
+					if triggerAttack == True:
+						hit.play()	
 					if e.getDyingStatus() == True and alive:
 						eyeOuch.play()
 			for f in flowerList:
 				if p.getAttackHitBox().colliderect(f.getHitBox()):
 					alive = f.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if f.getDyingStatus() == True and alive == True:
 						flowOuch.play()
 			for fos in fosList:
 				if p.getAttackHitBox().colliderect(fos.getHitBox()):
 					alive = fos.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if fos.getDyingStatus() == True and alive == True:
 						fosOuch.play()
 			for ts in tSnakeList:
 				if p.getAttackHitBox().colliderect(ts.getHitBox()):
 					alive = ts.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if ts.getDyingStatus() == True and alive == True:
 						tsOuch.play()
 			for mc in mcList:
 				if p.getAttackHitBox().colliderect(mc.getHitBox()):
 					alive = mc.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if mc.getDyingStatus() == True and alive == True:
 						mcOuch.play()
 			for w in wormList:
 				if p.getAttackHitBox().colliderect(w.getHitBox()):
 					alive = w.takeDamage()
-					hit.play()
+					if triggerAttack == True:
+						hit.play()
 					if w.getDyingStatus() == True and alive == True:
 						wormOuch.play()
 					
